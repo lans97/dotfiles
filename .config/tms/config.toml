@@ -3,5 +3,5 @@ path = "/home/lanns/Projects"
 depth = 2
 
 [[search_dirs]]
-path = "/home/lanns/.config"
+path = "/home/lanns/"
 depth = 2

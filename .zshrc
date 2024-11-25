@@ -141,6 +141,9 @@ alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARE
 alias l..='eza -al --color=always --group-directories-first ../../' # ls on directory 2 levels up
 alias l...='eza -al --color=always --group-directories-first ../../../' # ls on directory 3 levels up
 
+# changing "cd" to "zoxide"
+alias cd="z"
+
 # pacman and yay
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
@@ -197,3 +200,4 @@ alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Log out and log back in for ch
 eval "$(starship init zsh)"
 
 export LC_TIME=es_MX.UTF-8
+eval "$(zoxide init zsh)"

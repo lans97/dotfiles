@@ -96,7 +96,7 @@
     "custom/power": {
         "format": "󰤆",
         "tooltip": false,
-        "on-click": "dm-logout -r &"
+        "on-click": "~/.local/bin/logout-menu &"
     },
 
     "custom/notification": {

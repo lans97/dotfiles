@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Define the options for the menu
+options="Lock\nLogout\nReboot\nShutdown\nSuspend"
+
+# Display the menu using rofi
+selected_option=$(echo -e "$options" | rofi -dmenu -i -p "System Menu")
+
+# Execute the chosen option
+case "$selected_option" in
+    Lock)
+        # Lock the screen using hyprlock
+        hyprlock
+        ;;
+    Logout)
+        # Logout of Hyprland using hyprctl
+        hyprctl dispatch exit
+        ;;
+    Reboot)
+        # Reboot the system
+        systemctl reboot
+        ;;
+    Shutdown)
+        # Shut down the system
+        systemctl poweroff
+        ;;
+    Suspend)
+        # Suspend the system
+        systemctl suspend
+        ;;
+    *)
+        # Do nothing if an invalid option is selected
+        exit 1
+        ;;
+esac
+

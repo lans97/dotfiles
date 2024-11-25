@@ -1,0 +1,11 @@
+general.import = ["~/.config/alacritty/rose-pine-moon.toml"]
+
+[window]
+opacity = 0.75
+blur = true
+
+[font]
+normal = {family = "CaskaydiaMono Nerd Font Mono",style = "Regular"}
+bold = {family = "CaskaydiaMono Nerd Font Mono",style = "Bold"}
+italic = {family = "CaskaydiaMono Nerd Font Mono",style = "Italic"}
+bold_italic = {family = "CaskaydiaMono Nerd Font Mono",style = "BoldItalic"}

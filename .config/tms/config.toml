@@ -1,0 +1,7 @@
+[[search_dirs]]
+path = "/home/lanns/Projects"
+depth = 2
+
+[[search_dirs]]
+path = "/home/lanns/.config"
+depth = 2

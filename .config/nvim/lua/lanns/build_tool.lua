@@ -10,10 +10,17 @@ require('telescope').setup {
     },
 }
 
+local function get_project_name()
+    -- Get the full path to the current working directory
+    local cwd = vim.fn.getcwd()
+    -- Extract the base name (project directory name)
+    return vim.fn.fnamemodify(cwd, ":t")
+end
+
 local function run_cmake_command(cmd, detach)
     if detach then
         -- Run the command in a separate tmux window
-        vim.fn.system('tmux new-window "' .. cmd .. '"')
+        vim.fn.system("tmux neww '" .. cmd .. "'")
         print("Command sent to tmux: " .. cmd)
     else
         -- Run the command inside Neovim
@@ -33,11 +40,21 @@ local cmake_menu = function()
         prompt_title = "CMake Menu",
         finder = finders.new_table {
             results = {
-                { "Generate Build Files (Debug/Release)", "cmake -S . -B bin/ -G Ninja Multi-Config" },
-                { "Build Debug",                          "cmake --build bin --config Debug" },
-                { "Build Release",                        "cmake --build bin --config Release" },
-                { "Run Release (tmux)",                   "bin/Release/" .. project_name,            true },
-                { "Debug Debug (tmux)",                   "gdb bin/Debug/" .. project_name,          true },
+                { "Generate Build Files (Debug/Release)",
+                    "cmake -S . -B bin/ -G \"Ninja Multi-Config\" -D CMAKE_EXPORT_COMPILE_COMMANDS=ON && ln -sf bin/compile_commands.json compile_commands.json"
+                },
+                { "Build Debug",
+                    "cmake --build bin --config Debug" },
+                { "Build Release",
+                    "cmake --build bin --config Release" },
+                { "Run Release (tmux)",
+                    "bin/Release/" .. project_name .. "; echo \"Press <RETURN> to close...\"; read -n 1",
+                    true
+                },
+                { "Debug Debug (tmux)",
+                    "lldb bin/Debug/" .. project_name,
+                    true
+                },
             },
             entry_maker = function(entry)
                 return {

@@ -56,8 +56,16 @@ autocmd('FileType', {
     group = LannsGroup,
     pattern = 'c',
     callback = function ()
-        vim.keymap.set("n", "<leader>bb>", "<cmd>lua require('lanns.build_tool').cmake_menu()<CR>")
+        vim.keymap.set("n", "<leader>bb", "<cmd>lua require('lanns.build_tool').cmake_menu()<CR>")
     end
+})
+
+autocmd({"BufRead","BufNewFile"}, {
+    group = LannsGroup,
+    pattern = "*.h",
+    callback = function ()
+        vim.bo.filetype = "c"
+    end,
 })
 
 vim.g.netrw_browse_split = 0

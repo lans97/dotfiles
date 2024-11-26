@@ -136,7 +136,7 @@ alias vim="nvim"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
 alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -l --color=always --group-directories-first'  # long format
-alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias lt='eza -T --color=always --group-directories-first' # tree listing
 alias l.='eza -al --color=always --group-directories-first ../' # ls on the PARENT directory
 alias l..='eza -al --color=always --group-directories-first ../../' # ls on directory 2 levels up
 alias l...='eza -al --color=always --group-directories-first ../../../' # ls on directory 3 levels up
@@ -201,3 +201,17 @@ eval "$(starship init zsh)"
 
 export LC_TIME=es_MX.UTF-8
 eval "$(zoxide init zsh)"
+
+eval "$(fzf --zsh)"
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMNAD="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+_fzf_compgen_path() {
+    fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+    fd --type=d --hidden --exclude .git . "$1"
+}

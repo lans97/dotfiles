@@ -83,6 +83,14 @@ window#waybar {
     color: #cc3436;
 }
 
+tooltip {
+    background-color: rgba(0,43,51,0.85);
+}
+
+#tray menu {
+    background-color: rgba(0,43,51,0.85);
+}
+
 /*-----Colors----*/
 /*
  *rgba(0,85,102,1),#005566 --> Indigo(dye)

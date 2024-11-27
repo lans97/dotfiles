@@ -48,11 +48,11 @@ local cmake_menu = function()
                 { "Build Release",
                     "cmake --build bin --config Release" },
                 { "Run Release (tmux)",
-                    "bin/Release/" .. project_name .. "; echo \"Press <RETURN> to close...\"; read -n 1",
+                    "bin/Release/main; echo \"Press <RETURN> to close...\"; read -n 1",
                     true
                 },
                 { "Debug Debug (tmux)",
-                    "lldb bin/Debug/" .. project_name,
+                    "lldb bin/Debug/main",
                     true
                 },
             },

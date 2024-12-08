@@ -204,9 +204,9 @@ eval "$(zoxide init zsh)"
 
 eval "$(fzf --zsh)"
 
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude '{.git,vendor}'"
 export FZF_CTRL_T_COMMNAD="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude '{.git,vendor}'"
 
 _fzf_compgen_path() {
     fd --hidden --exclude .git . "$1"
@@ -215,3 +215,5 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
     fd --type=d --hidden --exclude .git . "$1"
 }
+
+source /usr/share/nvm/init-nvm.sh

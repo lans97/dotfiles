@@ -59,9 +59,15 @@ return {
                         capabilities = capabilities,
                         settings = {
                             Lua = {
-                                runtime = { version = "Lua 5.1" },
+                                runtime = { version = "LuaJIT" },
                                 diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                                    globals = { "vim" },
+                                },
+                                workspace = {
+                                    library = vim.api.nvim_get_runtime_file("", true),
+                                },
+                                telemetry = {
+                                    enable = false,
                                 }
                             }
                         }

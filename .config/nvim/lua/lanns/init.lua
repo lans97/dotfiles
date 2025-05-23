@@ -1,6 +1,6 @@
 require("lanns.set")
 require("lanns.remap")
-require("lanns.lazy_init")
+require("plugins")
 
 local augroup = vim.api.nvim_create_augroup
 local LannsGroup = augroup('Lanns', {})
@@ -9,7 +9,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
 function R(name)
-    require("plenary.reload").reload_module(name)
+	require("plenary.reload").reload_module(name)
 end
 
 vim.filetype.add({
@@ -29,6 +29,7 @@ autocmd('TextYankPost', {
     end,
 })
 
+-- Clear trailing whitespace
 autocmd({"BufWritePre"}, {
     group = LannsGroup,
     pattern = "*",

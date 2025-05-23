@@ -59,28 +59,19 @@
     },
 
     "network": {
-        "format-wifi" : "{icon}",
-        "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
-        "format-ethernet": "󰀂",
-        "format-alt" : "󱛇",
-        "format-disconnected" : "󰖪",
-        "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-        "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "format-ethernet": "",
+        "format-disconnected" : "",
+        "tooltip-format-ethernet": "{ifname} | {ipaddr}",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "~/.config/rofi/wifi/wifi.sh &",
-        "on-click-right": "~/.config/rofi/wifi/wifinew.sh &",
         "interval": 5,
         "nospacing": 1,
     },
 
     "wireplumber": {
         "format": "{icon}",
-        "format-bluetooth": "󰂰",
-        "nospacing": 1,
         "tooltip-format": "Volume : {volume}%",
         "format-muted": "󰝟",
         "format-icons": {
-            "headphone": "",
             "default": ["󰖀","󰕾",""]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
@@ -91,7 +82,7 @@
     "custom/logo": {
         "format": "  ",
         "tooltip": false,
-        "on-click": ""
+        "on-click": "rofi -show run"
     },
 
     "custom/power": {

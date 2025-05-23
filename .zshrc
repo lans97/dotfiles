@@ -29,6 +29,10 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/go/bin" ] ;
+  then PATH="$HOME/go/bin:$PATH"
+fi
+
 if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
@@ -214,6 +218,15 @@ _fzf_compgen_path() {
 
 _fzf_compgen_dir() {
     fd --type=d --hidden --exclude .git . "$1"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 source /usr/share/nvm/init-nvm.sh

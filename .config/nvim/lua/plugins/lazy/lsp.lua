@@ -76,6 +76,8 @@ return {
             }
         })
 
+        vim.lsp.enable("dartls")
+
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({

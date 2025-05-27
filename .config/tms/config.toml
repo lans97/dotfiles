@@ -1,7 +1,7 @@
 display_full_path = true
 
 [[search_dirs]]
-path = "/home/lanns/Projects"
+path = "/home/lanns/projects"
 depth = 3
 
 [[search_dirs]]

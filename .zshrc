@@ -33,6 +33,10 @@ if [ -d "$HOME/go/bin" ] ;
   then PATH="$HOME/go/bin:$PATH"
 fi
 
+if [ -d "$HOME/flutter/bin" ] ;
+  then PATH="$HOME/flutter/bin:$PATH"
+fi
+
 if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
@@ -200,6 +204,8 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Log out and log back in for change to take effect.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Log out and log back in for change to take effect.'"
 
+alias android-emulator="/home/lanns/Android/Sdk/emulator/emulator"
+
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init zsh)"
 
@@ -228,5 +234,7 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+export CHROME_EXECUTABLE="google-chrome-stable"
 
 source /usr/share/nvm/init-nvm.sh

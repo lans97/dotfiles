@@ -238,3 +238,5 @@ function y() {
 export CHROME_EXECUTABLE="google-chrome-stable"
 
 source /usr/share/nvm/init-nvm.sh
+
+fastfetch

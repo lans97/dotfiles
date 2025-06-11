@@ -5,7 +5,8 @@
     "height": 32,
     "modules-left": [
         "custom/logo",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "hyprland/window"
     ],
     "modules-center": [
         "clock",
@@ -22,18 +23,19 @@
     "hyprland/workspaces": {
         "on-click": "activate",
         "disable-scroll": true,
+        "active-only": false,
         "all-outputs": true,
         "warp-on-scroll": false,
         "format": "{icon}",
         "format-icons": {
             "default": "",
             "1": "",
-            "2": "\udb80\ude39",
+            "2": "",
             "3": "",
             "4": "",
             "5": "",
             //"active": "󱓻",
-            //"urgent": "󱓻"
+            "urgent": ""
         },
         "persistent_workspaces": {
             "1": [],
@@ -45,6 +47,13 @@
             "7": [],
             "8": [],
             "9": []
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) - Google Chrome": "$1",
         }
     },
 

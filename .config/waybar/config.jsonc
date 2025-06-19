@@ -14,8 +14,10 @@
         "tray",
         "custom/notification",
         "hyprland/language",
+        "keyboard-state",
         "network",
         "wireplumber",
+        "battery",
         "custom/power"
     ],
 
@@ -28,12 +30,12 @@
         "format-icons": {
             "default": "",
             "1": "",
-            "2": "\udb80\ude39",
+            "2": "",
             "3": "",
             "4": "",
             "5": "",
             //"active": "󱓻",
-            //"urgent": "󱓻"
+            "urgent": ""
         },
         "persistent_workspaces": {
             "1": [],
@@ -60,11 +62,14 @@
 
     "network": {
         "format-ethernet": "",
+        "format-wifi": "",
         "format-disconnected" : "",
         "tooltip-format-ethernet": "{ifname} | {ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-disconnected": "Disconnected",
         "interval": 5,
         "nospacing": 1,
+        "on-click": "networkmanager_dmenu"
     },
 
     "wireplumber": {
@@ -114,6 +119,29 @@
 
     "hyprland/language": {
         "format": "{short} {variant}",
+    },
+
+    "keyboard-state": {
+        "capslock": true,
+        "format": {
+            "capslock": "{icon}"
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        },
+    },
+
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{capacity}% | {timeTo}",
+        "max-length": 25
     }
 }
 

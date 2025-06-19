@@ -15,6 +15,7 @@
         "tray",
         "custom/notification",
         "hyprland/language",
+        "keyboard-state",
         "network",
         "wireplumber",
         "custom/power"
@@ -69,11 +70,14 @@
 
     "network": {
         "format-ethernet": "",
+        "format-wifi": "",
         "format-disconnected" : "",
         "tooltip-format-ethernet": "{ifname} | {ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-disconnected": "Disconnected",
         "interval": 5,
         "nospacing": 1,
+        "on-click": "networkmanager_dmenu"
     },
 
     "wireplumber": {
@@ -123,6 +127,17 @@
 
     "hyprland/language": {
         "format": "{short} {variant}",
+    },
+
+    "keyboard-state": {
+        "capslock": true,
+        "format": {
+            "capslock": "{icon}"
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        },
     }
 }
 

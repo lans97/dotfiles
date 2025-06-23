@@ -3,3 +3,5 @@ lazy-lock.json
 .ssh/lanns.pub
 known_hosts
 known_hosts.old
+
+.luarc.json

@@ -15,39 +15,7 @@ return {
                 },
             })
 
-            local function find_neotree_win_in_tab()
-                local tab = vim.api.nvim_get_current_tabpage()
-                for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
-                    local buf = vim.api.nvim_win_get_buf(win)
-                    if vim.bo[buf].filetype == "neo-tree" then
-                        return win
-                    end
-                end
-            end
-
-            local function neotree_smart_toggle_last()
-                local neotree_win = find_neotree_win_in_tab()
-                local cur_win = vim.api.nvim_get_current_win()
-
-                if neotree_win then
-                    if neotree_win == cur_win then
-                        -- Neo-tree is focused → close it (don’t “toggle”, just close the window)
-                        vim.api.nvim_win_close(neotree_win, true)
-                    else
-                        -- Neo-tree is open but not focused → focus it (do NOT close)
-                        vim.api.nvim_set_current_win(neotree_win)
-                    end
-                    return
-                end
-
-                -- No Neo-tree window open → open the last source and focus it
-                require("neo-tree.command").execute({
-                    action = "focus",
-                    source = "last",
-                })
-            end
-
-            vim.keymap.set("n", "<leader>pv", neotree_smart_toggle_last, {
+            vim.keymap.set("n", "<leader>pv", "<CMD>Neotree toggle last<CR>", {
                 desc = "Toggle Neo-tree (last source)"
             })
         end

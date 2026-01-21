@@ -1,5 +1,5 @@
 if vim.g.vscode then
-    require("vimcode")
+    require("vscodenvim")
 else
     require("lanns")
 
@@ -11,4 +11,3 @@ else
 
     ColorMyPencils()
 end
-

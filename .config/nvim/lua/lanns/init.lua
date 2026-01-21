@@ -1,5 +1,6 @@
-require("lanns.set")
 require("lanns.remap")
+require("lanns.set")
+
 require("plugins")
 
 local augroup = vim.api.nvim_create_augroup
@@ -12,23 +13,6 @@ function R(name)
 	require("plenary.reload").reload_module(name)
 end
 
-vim.filetype.add({
-    extension = {
-        templ = 'templ',
-    }
-})
-
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
-})
-
 -- Clear trailing whitespace
 autocmd({"BufWritePre"}, {
     group = LannsGroup,
@@ -36,7 +20,7 @@ autocmd({"BufWritePre"}, {
     command = [[%s/\s\+$//e]],
 })
 
-autocmd('LspAttach', {
+autocmd("LspAttach", {
     group = LannsGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
@@ -51,6 +35,56 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     end
+})
+
+autocmd("FileType", {
+  callback = function(ev)
+    local buf = ev.buf
+    local ft = ev.match
+
+    -- 1. real file buffers only
+    if vim.bo[buf].buftype ~= "" then
+      return
+    end
+
+    -- 2. must map to a TS language
+    local lang = vim.treesitter.language.get_lang(ft)
+    if not lang then
+      return
+    end
+
+    -- 3. optional hard excludes
+    local excluded = {
+      netrw = true,
+      help = true,
+      lazy = true,
+      mason = true,
+    }
+    if excluded[ft] then
+      return
+    end
+
+    if vim.api.nvim_buf_line_count(buf) > 50000 then
+      return
+    end
+
+    if vim.bo[buf].binary then
+      return
+    end
+
+    -- 4. start or install
+    local ok = pcall(vim.treesitter.start, buf, lang)
+    if ok then
+      return
+    end
+
+    coroutine.wrap(function()
+      require("nvim-treesitter").install({ lang }):wait(300000)
+      vim.schedule(function()
+        pcall(vim.treesitter.start, buf, lang)
+      end)
+    end)()
+  end,
 })
 
 vim.g.netrw_browse_split = 0

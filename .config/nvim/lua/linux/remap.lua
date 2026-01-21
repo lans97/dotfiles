@@ -1,4 +1,3 @@
-
 vim.keymap.set("n", "<leader>gs", "<cmd>silent !tmux neww lazygit<CR>")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux popup -E tms<CR>")

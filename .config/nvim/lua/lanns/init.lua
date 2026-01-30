@@ -10,11 +10,11 @@ local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
 function R(name)
-	require("plenary.reload").reload_module(name)
+    require("plenary.reload").reload_module(name)
 end
 
 -- Clear trailing whitespace
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = LannsGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
@@ -37,54 +37,61 @@ autocmd("LspAttach", {
     end
 })
 
+local installing = {} ---@type table<string, boolean>
+
 autocmd("FileType", {
-  callback = function(ev)
-    local buf = ev.buf
-    local ft = ev.match
+    callback = function(ev)
+        local buf = ev.buf
+        local ft = ev.match
 
-    -- 1. real file buffers only
-    if vim.bo[buf].buftype ~= "" then
-      return
-    end
+        -- 1) real, named file buffers only
+        if vim.bo[buf].buftype ~= "" then return end
+        local name = vim.api.nvim_buf_get_name(buf)
+        if name == "" then return end
 
-    -- 2. must map to a TS language
-    local lang = vim.treesitter.language.get_lang(ft)
-    if not lang then
-      return
-    end
+        -- 2) optional excludes
+        local excluded = {
+            netrw = true,
+            help = true,
+            lazy = true,
+            mason = true,
+        }
+        if excluded[ft] then return end
 
-    -- 3. optional hard excludes
-    local excluded = {
-      netrw = true,
-      help = true,
-      lazy = true,
-      mason = true,
-    }
-    if excluded[ft] then
-      return
-    end
+        if vim.api.nvim_buf_line_count(buf) > 50000 then return end
+        if vim.bo[buf].binary then return end
 
-    if vim.api.nvim_buf_line_count(buf) > 50000 then
-      return
-    end
+        -- 3) must map to a TS language
+        local lang = vim.treesitter.language.get_lang(ft)
+        if not lang then return end
 
-    if vim.bo[buf].binary then
-      return
-    end
+        -- 4) if parser exists, just start (don’t install on random TS errors)
+        local has_parser = pcall(vim.treesitter.get_parser, buf, lang)
+        if has_parser then
+            pcall(vim.treesitter.start, buf, lang)
+            return
+        end
 
-    -- 4. start or install
-    local ok = pcall(vim.treesitter.start, buf, lang)
-    if ok then
-      return
-    end
+        -- 5) parser missing: install once per lang
+        if installing[lang] then return end
+        installing[lang] = true
 
-    coroutine.wrap(function()
-      require("nvim-treesitter").install({ lang }):wait(300000)
-      vim.schedule(function()
-        pcall(vim.treesitter.start, buf, lang)
-      end)
-    end)()
-  end,
+        coroutine.wrap(function()
+            -- nvim-treesitter install API (safe + explicit)
+            local ok_install, installer = pcall(require, "nvim-treesitter.install")
+            if ok_install and installer then
+                pcall(installer.install, lang)
+            else
+                -- fallback if module name differs in your setup
+                pcall(require("nvim-treesitter").install, { lang })
+            end
+
+            vim.schedule(function()
+                installing[lang] = nil
+                pcall(vim.treesitter.start, buf, lang)
+            end)
+        end)()
+    end,
 })
 
 vim.g.netrw_browse_split = 0

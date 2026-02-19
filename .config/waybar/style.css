@@ -1,11 +1,11 @@
 * {
   border: none;
   font-family:
-    "FiraCode Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands",
+    "FiraCode Nerd Font",
     sans-serif;
   font-size: 14px;
   color: #ffffff;
-  border-radius: 12px;
+  border-radius: 18px;
   margin: 0 2px;
 }
 
@@ -25,7 +25,7 @@ window#waybar {
   margin: 4px 0 0 0;
 }
 .modules-left {
-  background-color: #f5d9e2;
+  background-color: #e26d4c;
 }
 .modules-left * {
   color: #040405;
@@ -35,9 +35,10 @@ window#waybar {
   background-color: transparent;
 }
 #workspaces button label {
-  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
+  font-family: "Font Awesome 7 Free", "Font Awesome 7 Brands", sans-serif;
   font-size: 14px;
 }
+
 #workspaces button:hover {
   background-color: #2ba6b5;
 }
@@ -47,7 +48,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background-color: #e3abb5;
+  background-color: #fbc764;
 }
 
 #clock {

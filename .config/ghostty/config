@@ -49,7 +49,7 @@
 #
 # Changing this configuration at runtime will only affect new terminals, i.e.
 # new windows, tabs, etc.
-font-family = "FiraCode Nerd Font"
+font-family = "CaskaydiaCove Nerd Font"
 
 font-family-bold =
 font-family-italic =
@@ -133,7 +133,7 @@ font-feature =
 # depending on your `window-inherit-font-size` setting. If that setting is
 # true, only the first window will be affected by this change since all
 # subsequent windows will inherit the font size of the previous window.
-font-size = 14
+font-size = 16
 
 # A repeatable configuration to set one or more font variations values for
 # a variable font. A variable font is a single font, usually with a filename
@@ -290,7 +290,7 @@ grapheme-width-method = unicode
 #   * `autohint` - Use the freetype auto-hinter. Enabled by default.
 #
 # Example: `hinting`, `no-hinting`, `force-autohint`, `no-force-autohint`
-freetype-load-flags = hinting,force-autohint,monochrome,autohint
+freetype-load-flags = hinting,force-autohint,autohint
 
 # A theme to use. This can be a built-in theme name, a custom theme
 # name, or an absolute path to a custom theme file. Ghostty also supports
@@ -346,7 +346,7 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 #
 #   - macOS: titlebar tabs style is not updated when switching themes.
 #
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Background color for the window.
 # background = #282c34
@@ -2146,7 +2146,7 @@ gtk-wide-tabs = true
 #
 # This configuration only has an effect if Ghostty was built with
 # Adwaita support.
-gtk-adwaita = true
+# gtk-adwaita = true
 
 # If `true` (default), applications running in the terminal can show desktop
 # notifications using certain escape sequences such as OSC 9 or OSC 777.

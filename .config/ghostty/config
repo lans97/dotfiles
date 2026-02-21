@@ -49,11 +49,11 @@
 #
 # Changing this configuration at runtime will only affect new terminals, i.e.
 # new windows, tabs, etc.
-font-family = "CaskaydiaCove Nerd Font"
+font-family = "FiraCode Nerd Font Mono"
 
-font-family-bold =
-font-family-italic =
-font-family-bold-italic =
+font-family-bold = auto
+font-family-italic = auto
+font-family-bold-italic = auto
 # The named font style to use for each of the requested terminal font styles.
 # This looks up the style based on the font style string advertised by the
 # font itself. For example, "Iosevka Heavy" has a style of "Heavy".
@@ -133,7 +133,7 @@ font-feature =
 # depending on your `window-inherit-font-size` setting. If that setting is
 # true, only the first window will be affected by this change since all
 # subsequent windows will inherit the font size of the previous window.
-font-size = 16
+font-size = 14
 
 # A repeatable configuration to set one or more font variations values for
 # a variable font. A variable font is a single font, usually with a filename
@@ -205,7 +205,6 @@ font-thicken = false
 #   * Powerline glyphs will be adjusted along with the cell height so
 #     that things like status lines continue to look aligned.
 adjust-cell-width =
-
 adjust-cell-height =
 # Distance in pixels from the bottom of the cell to the text baseline.
 # Increase to move baseline UP, decrease to move baseline DOWN.
@@ -346,7 +345,7 @@ freetype-load-flags = hinting,force-autohint,autohint
 #
 #   - macOS: titlebar tabs style is not updated when switching themes.
 #
-theme = Catppuccin Mocha
+theme = Rose Pine
 
 # Background color for the window.
 # background = #282c34

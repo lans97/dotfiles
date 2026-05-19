@@ -28,3 +28,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "81"
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
+vim.g.python3_host_prog = "~/.pyenv/versions/neovim-provider/bin/python"

@@ -1,13 +1,16 @@
 if vim.g.vscode then
-    require("vscodenvim")
+	require("vscodenvim")
 else
-    require("lanns")
+	require("lanns")
+    require("plugins")
 
-    if vim.loop.os_uname().sysname == "Windows_NT" then
-        require("windows")
-    else
-        require("linux")
-    end
+	if vim.loop.os_uname().sysname == "Windows_NT" then
+		require("windows")
+	else
+		require("linux")
+	end
 
     ColorMyPencils()
 end
+
+require("lanns")

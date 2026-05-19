@@ -5,3 +5,5 @@
 	name = Luis Silva
 [fetch]
 	prune = true
+[pull]
+	rebase = true

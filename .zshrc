@@ -1,5 +1,5 @@
 ### EXPORT
-export TERM="xterm-256color"                      # getting proper colors
+export TERM="screen-256color"                      # getting proper colors
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -237,6 +237,12 @@ function y() {
 
 export CHROME_EXECUTABLE="google-chrome-stable"
 
-source /usr/share/nvm/init-nvm.sh
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+eval "$(rbenv init -)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 fastfetch

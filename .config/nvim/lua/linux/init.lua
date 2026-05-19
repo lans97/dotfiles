@@ -1,2 +1,2 @@
-require("linux.remap")
 require("linux.set")
+require("linux.remap")

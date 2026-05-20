@@ -13,4 +13,3 @@ else
     ColorMyPencils()
 end
 
-require("lanns")
